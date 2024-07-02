@@ -83,7 +83,7 @@ class App
 			require(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . ucfirst($route[1]) . 'Controller.php');
 			$controller = new $route[1]();
 		} else {
-			require(ROOT . PROJECT_FOLDER . '/app/controllers/MainController.php');
+			require(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . 'MainController.php');
 			$main = new MainController();
 		}
 	}
