@@ -34,25 +34,6 @@ class TeamsController extends Controller
 	}
 
 	/**
-	 * Post
-	 *
-	 * http://localhost/posts/post/[$post_id]
-	 */
-	// public function post( $post_id = 0 ) : void
-	// {
-	// 	$this->model( 'PostsModel' );
-
-	// 	$post = $this->PostsModel->readPost( ( int )$post_id );
-
-	// 	$data = array(
-	// 		'title' => $post['post_title'] ?? '',
-	// 		'post'  => $post,
-	// 	);
-
-	// 	$this->view( 'posts/post', $data );
-	// }
-
-	/**
 	 * Add
 	 *
 	 * http://localhost/teams/add
@@ -89,8 +70,6 @@ class TeamsController extends Controller
 	 */
 	public function edit($id = 0) : void
 	{
-        echo 'EDIT';
-        die();
 		$this->model('TeamsModel');
 
 		$team = $this->TeamsModel->getTeam(( int )$id);

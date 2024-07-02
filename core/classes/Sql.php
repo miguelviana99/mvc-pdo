@@ -1,9 +1,6 @@
 <?php
 /**
  * Sql
- *
- * @package CRUD MVC OOP PDO
- * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/core/classes/Sql.php
  */
 
 class Sql
@@ -185,5 +182,4 @@ class Sql
 
 		return $this;
 	}
-
 }

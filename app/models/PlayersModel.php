@@ -75,28 +75,6 @@ class PlayersModel extends Model
 	}
 
 	/**
-	 * Read Post
-	 */
-	// public function getTeam(int $post_id) : ?array
-	// {
-	// 	$sql = Sql::query()
-	// 		->select('*')
-	// 		->from('teams')
-	// 		->where('id = :id')
-	// 		->get();
-
-	// 	$data = array(
-	// 		'id' => $post_id,
-	// 	);
-
-	// 	$stmt = $this->db->prepare($sql);
-	// 	$this->bind($stmt, $data);
-	// 	$stmt->execute();
-
-	// 	return $stmt->fetch(PDO::FETCH_ASSOC);
-	// }
-
-	/**
 	 * Add Player
 	 */
 	public function addPlayer(array $player) : void
@@ -153,7 +131,7 @@ class PlayersModel extends Model
 	}
 
 	/**
-	 * Delete Team
+	 * Delete Player
 	 */
 	public function deletePlayer( int $id ) : void
 	{

@@ -2,9 +2,6 @@
 /**
  * Players View
  */
-include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Site.php');
-include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Time.php');
-
 ?>
 
 <section class="card mt-3 mb-3">

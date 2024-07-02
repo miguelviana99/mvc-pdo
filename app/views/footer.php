@@ -2,7 +2,6 @@
 /**
  * Footer
  */
-
 ?>
 
 </div><!-- .container -->

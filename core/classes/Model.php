@@ -1,9 +1,6 @@
 <?php
 /**
  * Model
- *
- * @package CRUD MVC OOP PDO
- * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/core/classes/Model.php
  */
 
 abstract class Model

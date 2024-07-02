@@ -1,9 +1,6 @@
 <?php
 /**
  * Site
- *
- * @package CRUD MVC OOP PDO
- * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/core/helpers/Site.php
  */
 
 class Site
@@ -56,5 +53,4 @@ class Site
 
 		return $version;
 	}
-
 }

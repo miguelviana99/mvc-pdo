@@ -1,9 +1,6 @@
 <?php
 /**
  * Time
- *
- * @package CRUD MVC OOP PDO
- * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/core/helpers/Time.php
  */
 
 class Time
@@ -33,5 +30,4 @@ class Time
 
 		return $time;
 	}
-
 }

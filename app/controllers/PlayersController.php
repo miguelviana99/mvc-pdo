@@ -34,25 +34,6 @@ class PlayersController extends Controller
 	}
 
 	/**
-	 * Post
-	 *
-	 * http://localhost/posts/post/[$post_id]
-	 */
-	// public function post( $post_id = 0 ) : void
-	// {
-	// 	$this->model( 'PostsModel' );
-
-	// 	$post = $this->PostsModel->readPost( ( int )$post_id );
-
-	// 	$data = array(
-	// 		'title' => $post['post_title'] ?? '',
-	// 		'post'  => $post,
-	// 	);
-
-	// 	$this->view( 'posts/post', $data );
-	// }
-
-	/**
 	 * Add
 	 *
 	 * http://localhost/players/add
@@ -123,27 +104,6 @@ class PlayersController extends Controller
 		$this->model( 'PlayersModel' );
 
 		$this->PlayersModel->deletePlayer( ( int )$id );
-	}
-
-	/**
-	 * View
-	 *
-	 * http://localhost/teams/viewItem/[$post_id]
-	 */
-	public function viewItem($id = 0) : void
-	{
-		$this->model( 'TeamsModel' );
-        $team = $this->TeamsModel->getTeam(( int )$id);
-
-        $this->model( 'PlayersModel' );
-        $players = $this->PlayersModel->getPlayers(( int )$team['id']);
-
-        $data = array(
-			'team'   => $team,
-            'players' => $players
-		);
-
-		$this->view('teams/item', $data);
 	}
 }
 

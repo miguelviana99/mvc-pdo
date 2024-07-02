@@ -18,8 +18,6 @@
 			<link rel="stylesheet" type="text/css" href="/public/assets/css/style.css">
 
 			<title><?= Site::title( $title ); ?></title>
-			<meta name="description" content="A simple and intuitive CRUD system using the MVC pattern in OOP paradigm. To connect to the database using PDO.">
-			<meta name="keywords" content="crud, mvc, oop, pdo, php, sql, js, jquery, html, css bootstrap">
 		</head>
 
 		<body>

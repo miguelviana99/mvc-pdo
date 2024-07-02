@@ -1,9 +1,6 @@
 <?php
 /**
  * Pagination
- *
- * @package CRUD MVC OOP PDO
- * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/app/views/pagination.php
  */
 
 ?>
