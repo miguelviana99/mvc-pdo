@@ -87,61 +87,48 @@ class TeamsController extends Controller
 	/**
 	 * Edit
 	 *
-	 * http://localhost/posts/edit/[$post_id]
+	 * http://localhost/teams/edit/[$team_id]
 	 */
-	// public function edit( $post_id = 0 ) : void
-	// {
-	// 	$this->model( 'PostsModel' );
+	public function edit($id = 0) : void
+	{
+		$this->model('TeamsModel');
 
-	// 	$post = $this->PostsModel->readPost( ( int )$post_id );
+		$team = $this->TeamsModel->getTeam(( int )$id);
 
-	// 	if ( ! User::author( ( int )$post['post_author'] ) && ! User::role( array( 'admin', 'editor' ) ) ) {
-	// 		Site::redirect( '/' );
-	// 	}
+		if (isset($_POST['team-edit'])) {
+			try {
+				$this->TeamsModel->editTeam(array(
+					'id'              => ( int )$id,
+					'name'            => $_POST['name'],
+					'city'            => $_POST['city'],
+					'sport'           => $_POST['sport'],
+					'foundation_date' => $_POST['foundation_date'],
+				) );
+			} catch ( ValidationException $e ) {
+				$errors = $e->getError();
+			}
+		}
 
-	// 	if ( isset( $_POST['post-edit'] ) ) {
-	// 		try {
-	// 			$this->PostsModel->editPost( array(
-	// 				'id'      => ( int )$post_id,
-	// 				'title'   => $_POST['post-title'],
-	// 				'content' => $_POST['post-content'],
-	// 				'cover'   => $_FILES['post-cover'],
-	// 			) );
-	// 		} catch ( ValidationException $e ) {
-	// 			$errors = $e->getError();
-	// 		}
-	// 	}
+		$data = array(
+			'title'  => 'Edit ' . $team['post_title'],
+			'team'   => $team,
+			'errors' => $errors,
+		);
 
-	// 	$data = array(
-	// 		'title'  => 'Edit ' . $post['post_title'],
-	// 		'post'   => $post,
-	// 		'errors' => $errors,
-	// 	);
-
-	// 	$this->view( 'posts/edit', $data );
-	// }
+		$this->view( 'teams/edit', $data );
+	}
 
 	/**
 	 * Delete
 	 *
-	 * http://localhost/posts/delete/[$post_id]
+	 * http://localhost/teams/delete/[$post_id]
 	 */
-	// public function delete( $post_id = 0 ) : void
-	// {
-	// 	$this->model( 'PostsModel' );
+	public function delete( $id = 0 ) : void
+	{
+		$this->model( 'TeamsModel' );
 
-	// 	$post = $this->PostsModel->readPost( ( int )$post_id );
-
-	// 	if ( ! User::author( $post['post_author'] ) && ! User::role( array( 'admin' ) ) ) {
-	// 		Site::redirect( '/' );
-	// 	}
-
-	// 	if ( ! empty( $post['post_cover'] ) ) {
-	// 		File::delete( $post['post_cover'] );
-	// 	}
-
-	// 	$this->PostsModel->deletePost( ( int )$post_id );
-	// }
+		$this->TeamsModel->deleteTeam( ( int )$id );
+	}
 
 }
 

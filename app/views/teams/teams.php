@@ -19,7 +19,6 @@ include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'h
 		<table class="table table-striped mb-0">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Name</th>
 					<th>City</a></th>
 					<th>Sport</a></th>
@@ -31,11 +30,12 @@ include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'h
 				<?php foreach ( $teams as $team ) : ?>
 				<tr>
 					<td>
-                        <?=$team['id']?>
-					</td>
-					<td>
 					    <?php if ($team['name']) : ?>
-                            <?= $team['name']; ?>
+                            <div class="mb-2">
+                                <?= $team['name']; ?>
+                            </div>    
+                            <a href="/teams/edit/<?= $team['id']; ?>" class="btn btn-light btn-sm">Edit</a>
+                            <a href="/teams/delete/<?= $team['id']; ?>" class="btn btn-light btn-sm" onclick="return confirm( 'Are you want to DELETE <?= $team['name']; ?>?' );">Delete</a>
                         <?php endif; ?>
                     </td>
                     <td>
