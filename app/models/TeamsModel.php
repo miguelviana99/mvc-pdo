@@ -1,9 +1,6 @@
 <?php
 /**
- * Posts Model
- *
- * @package CRUD MVC OOP PDO
- * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/app/models/PostsModel.php
+ * Teams Model
  */
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'classes' . DS . 'Model.php';
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'classes' . DS . 'Sql.php';
@@ -11,19 +8,17 @@ require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'File.php';
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Str.php';
 
-class PostsModel extends Model
+class TeamsModel extends Model
 {
 
 	/**
-	 * Read Posts
+	 * Get Teams
 	 */
-	public function readPosts( array $pagination, array $sort ) : array
+	public function getTeams( array $pagination, array $sort ) : array
 	{
 		$sql = Sql::query()
-			->select( 'post_id, post_created, post_updated, post_title, post_content, post_author, post_cover, user_id, user_name, user_email' )
-			->from( 'posts' )
-			->innerJoin( 'users' )
-			->on( 'posts.post_author = users.user_id' )
+			->select( '*' )
+			->from( 'teams' )
 			->orderBy( $sort['by'] . ' ' . $sort['order'] )
 			->limit( $pagination['start'] . ', ' . $pagination['perpage'] )
 			->get();
@@ -59,29 +54,29 @@ class PostsModel extends Model
 	}
 
 	/**
-	 * Add Post
+	 * Add Team
 	 */
-	public function addPost( array $post ) : void
+	public function addTeam( array $post ) : void
 	{
-		Str::validate( $post['title'], true, 255 );
-		Str::validate( $post['content'] );
-		File::validate( $post['cover'], array( 'image/jpg', 'image/jpeg', 'image/png', 'image/gif' ), 5000000 );
+		Str::validate($post['name']);
+		Str::validate($post['city']);
+		Str::validate($post['sport']);
 
-		$post_title   = Str::clean( $post['title'] );
-		$post_author  = Str::clean( $post['author'] );
-		$post_content = Str::clean( $post['content'], false );
-		$post_cover   = File::upload( $post['cover'] );
+		$name  = Str::clean($post['name']);
+		$city  = Str::clean($post['city']);
+		$sport = Str::clean($post['sport']);
+
 
 		$sql = Sql::query()
-			->insertInto( 'posts ( post_title, post_author, post_content, post_cover )' )
-			->values( '( :title, :author, :content, :cover )' )
+			->insertInto( 'teams ( name, city, sport, foundation_date )' )
+			->values( '( :name, :city, :sport, :foundation )' )
 			->get();
 
 		$data = array(
-			'title'   => $post_title,
-			'author'  => $post_author,
-			'content' => $post_content,
-			'cover'   => $post_cover,
+			'name'       => $name,
+			'city'       => $city,
+			'sport'      => $sport,
+			'foundation' => $post['foundation_date'] ?? NULL,
 		);
 
 		$stmt = $this->db->prepare( $sql );

@@ -6,4 +6,4 @@
  * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/core/config/session.php
  */
 
-$this->config['session-name'] = 'SID';
+$this->config['session-name'] = '1234';

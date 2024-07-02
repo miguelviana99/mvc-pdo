@@ -54,7 +54,7 @@ class User
 	 */
 	public static function panel() : void
 	{
-		require_once( ROOT . '/app/views/users/panel.php' );
+		require_once( __DIR__ . DS . '..' . DS . '..' . DS . 'app' . DS . 'views' . DS . 'users' . DS . 'panel.php');
 	}
 
 	/**

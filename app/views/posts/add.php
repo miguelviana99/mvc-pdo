@@ -5,7 +5,7 @@
  * @package CRUD MVC OOP PDO
  * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/app/views/posts/add.php
  */
-
+include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Errors.php')
 ?>
 
 <section class="card mt-3 mb-3">

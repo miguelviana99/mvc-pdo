@@ -13,12 +13,17 @@
  * @link      https://github.com/utoyvo/crud-mvc-oop-pdo
  * @author    Oleksandr Klochko <utoyvo(at)protonmail.com>
  * @copyright 2020
- */
+*/
 
-require_once( __DIR__ . '/core/App.php' );
+require_once(__DIR__ . '/core/App.php');
+try {
+    $app = new App();
 
-$app = new App();
+    $app->autoload();
 
-$app->autoload();
-$app->config();
-$app->start();
+    $app->config();
+    $app->start();
+
+} catch (\Exception $e) {
+    echo $e->getMessage();
+}

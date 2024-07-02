@@ -78,7 +78,7 @@ abstract class Controller
 		$class = $class[count( $class ) - 1];
 		$path  = strtolower( $path );
 
-		require( ROOT . '/app/models/' . $path . '.php' );
+		require(__DIR__ . DS . '..' . DS . '..' . DS . 'app' . DS . 'models' . DS . $path . '.php');
 
 		$this->$class = new $class;
 	}
@@ -92,9 +92,9 @@ abstract class Controller
 			extract( $data );
 		}
 
-		require( ROOT . '/app/views/header.php' );
-		require( ROOT . '/app/views/' . $path . '.php' );
-		require( ROOT . '/app/views/footer.php' );
+		require(__DIR__ . DS . '..' . DS . '..' . DS . 'app' . DS . 'views' . DS . 'header.php');
+		require(__DIR__ . DS . '..' . DS . '..' . DS . 'app' . DS . 'views' . DS . $path . '.php');
+		require(__DIR__ . DS . '..' . DS . '..' . DS . 'app' . DS . 'views' . DS . 'footer.php');
 	}
 
 }

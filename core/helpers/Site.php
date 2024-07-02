@@ -14,7 +14,7 @@ class Site
 	 */
 	public static function pagination( array $pagination ) : void
 	{
-		require( ROOT . '/app/views/pagination.php' );
+		require( __DIR__ . DS . '..' . DS . '..' . DS . 'app' . DS . 'views' . DS . 'pagination.php');
 	}
 
 	/**

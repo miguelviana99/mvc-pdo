@@ -12,7 +12,9 @@
 	<div class="card-body">
 		<h1 class="card-title">Posts</h1>
 
-		<?php User::panel(); ?>
+		<div class="mb-3">
+			<a href="/posts/add" class="btn btn-primary">Add Post</a>
+		</div>
 
 		<?php if ( ! empty( $posts ) ) : ?>
 		<table class="table table-striped mb-0">

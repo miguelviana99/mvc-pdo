@@ -5,6 +5,7 @@
  * @package CRUD MVC OOP PDO
  * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/app/controllers/UsersController.php
  */
+require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'classes' . DS . 'Controller.php';
 
 class UsersController extends Controller
 {

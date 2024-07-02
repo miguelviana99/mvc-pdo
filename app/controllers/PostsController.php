@@ -5,6 +5,12 @@
  * @package CRUD MVC OOP PDO
  * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/app/controllers/PostsController.php
  */
+require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'classes' . DS . 'Controller.php';
+require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'classes' . DS . 'Model.php';
+require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'User.php';
+require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Site.php';
+require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'File.php';
+require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Str.php';
 
 class PostsController extends Controller
 {
@@ -16,7 +22,7 @@ class PostsController extends Controller
 	 */
 	public function index() : void
 	{
-		$this->model( 'PostsModel' );
+		$this->model('PostsModel');
 
 		$pagination = $this->PostsModel->pagination( 'posts', ( int )$_GET['page'], 5 );
 		$sort       = $this->PostsModel->sort( 'post_', ( string )$_GET['sort'], array( 'title', 'time', 'content', 'author' ) );
@@ -59,10 +65,6 @@ class PostsController extends Controller
 	public function add() : void
 	{
 		$this->model( 'PostsModel' );
-
-		if ( ! User::login() ) {
-			Site::redirect( '/users/sign_in' );
-		}
 
 		if ( isset( $_POST['post-add'] ) ) {
 			try {
