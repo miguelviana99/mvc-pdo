@@ -1,36 +1,36 @@
 <?php
 /**
- * Teams Controller
+ * Players Controller
  */
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'classes' . DS . 'Controller.php';
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'classes' . DS . 'Model.php';
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Site.php';
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Str.php';
 
-class TeamsController extends Controller
+class PlayersController extends Controller
 {
 
 	/**
 	 * Index
 	 *
-	 * http://localhost/teams
+	 * http://localhost/players
 	 */
 	public function index() : void
 	{
-		$this->model('TeamsModel');
+		$this->model('PlayersModel');
 
-		$pagination = $this->TeamsModel->pagination( 'teams', ( int )$_GET['page'], 5 );
-		$sort       = $this->TeamsModel->sort( '', '', []);
+		$pagination = $this->PlayersModel->pagination( 'players', ( int )$_GET['page'], 5 );
+		$sort       = $this->PlayersModel->sort( '', '', []);
 
-		$teams = $this->TeamsModel->getTeams( $pagination, $sort );
+		$players = $this->PlayersModel->getAllPlayers( $pagination, $sort );
 
 		$data = array(
-			'title'      => 'Teams',
-			'teams'      => $teams,
+			'title'      => 'Players',
+			'players'      => $players,
 			'pagination' => $pagination,
 		);
 
-		$this->view( 'teams/teams', $data );
+		$this->view( 'players/players', $data );
 	}
 
 	/**
@@ -55,19 +55,18 @@ class TeamsController extends Controller
 	/**
 	 * Add
 	 *
-	 * http://localhost/teams/add
+	 * http://localhost/players/add
 	 */
 	public function add() : void
 	{
-		$this->model( 'TeamsModel' );
+		$this->model( 'PlayersModel' );
 
-		if ( isset( $_POST['post-add'] ) ) {
+		if ( isset( $_POST['player-add'] ) ) {
 			try {
-				$this->TeamsModel->addTeam( array(
+				$this->PlayersModel->addPlayer( array(
 					'name'   => $_POST['name'],
-					'city'  => $_POST['city'],
-					'sport'  => $_POST['sport'],
-					'foundation_date'  => $_POST['foundation_date'] ?? new DateTime('now'),
+					'number'  => ( int )$_POST['number'],
+					'team_id'  => ( int )$_POST['team_id'],
 				) );
 			} catch ( ValidationException $e ) {
 				$errors = $e->getError();
@@ -75,34 +74,31 @@ class TeamsController extends Controller
 		}
 
 		$data = array(
-			'title'  => 'Add Post',
+			'title'  => 'Add Players',
 			'errors' => $errors,
 		);
 
-		$this->view( 'teams/add', $data );
+		$this->view( 'players/add', $data );
 	}
 
 	/**
 	 * Edit
 	 *
-	 * http://localhost/teams/edit/[$team_id]
+	 * http://localhost/players/edit/[$player_id]
 	 */
 	public function edit($id = 0) : void
 	{
-        echo 'EDIT';
-        die();
-		$this->model('TeamsModel');
 
-		$team = $this->TeamsModel->getTeam(( int )$id);
+		$this->model('PlayersModel');
 
-		if (isset($_POST['team-edit'])) {
+		$player = $this->PlayersModel->getPlayer(( int )$id);
+
+		if (isset($_POST['player-edit'])) {
 			try {
-				$this->TeamsModel->editTeam(array(
-					'id'              => ( int )$id,
-					'name'            => $_POST['name'],
-					'city'            => $_POST['city'],
-					'sport'           => $_POST['sport'],
-					'foundation_date' => $_POST['foundation_date'],
+				$this->PlayersModel->editPlayer(array(
+					'name'    => $_POST['name'],
+					'number'  => $_POST['number'],
+					'team_id' => $_POST['team_id'],
 				) );
 			} catch ( ValidationException $e ) {
 				$errors = $e->getError();
@@ -110,24 +106,23 @@ class TeamsController extends Controller
 		}
 
 		$data = array(
-			'title'  => 'Edit ' . $team['post_title'],
-			'team'   => $team,
+			'player'   => $player,
 			'errors' => $errors,
 		);
 
-		$this->view( 'teams/edit', $data );
+		$this->view( 'players/edit', $data );
 	}
 
 	/**
 	 * Delete
 	 *
-	 * http://localhost/teams/delete/[$post_id]
+	 * http://localhost/players/delete/[$id]
 	 */
 	public function delete( $id = 0 ) : void
 	{
-		$this->model( 'TeamsModel' );
+		$this->model( 'PlayersModel' );
 
-		$this->TeamsModel->deleteTeam( ( int )$id );
+		$this->PlayersModel->deletePlayer( ( int )$id );
 	}
 
 	/**
@@ -152,4 +147,4 @@ class TeamsController extends Controller
 	}
 }
 
-class_alias( 'TeamsController', 'Teams' );
+class_alias( 'PlayersController', 'Players' );

@@ -1,9 +1,6 @@
 <?php
 /**
  * App
- *
- * @package CRUD MVC OOP PDO
- * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/core/App.php
  */
 
 class App
@@ -82,17 +79,12 @@ class App
 		$route    = explode('/', URI);
 		$route[1] = strtolower($route[1]);
 
-		try {
-			if (file_exists(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . ucfirst($route[1]) . 'Controller.php')) {
-				require(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . ucfirst($route[1]) . 'Controller.php');
-				$controller = new $route[1]();
-			} else {
-				require(ROOT . PROJECT_FOLDER . '/app/controllers/MainController.php');
-				$main = new MainController();
-			}
-		} catch (\Throwable $e) {
-			echo ' -- ERROR -- ' . $e->getMessage();
+		if (file_exists(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . ucfirst($route[1]) . 'Controller.php')) {
+			require(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . ucfirst($route[1]) . 'Controller.php');
+			$controller = new $route[1]();
+		} else {
+			require(ROOT . PROJECT_FOLDER . '/app/controllers/MainController.php');
+			$main = new MainController();
 		}
 	}
-
 }

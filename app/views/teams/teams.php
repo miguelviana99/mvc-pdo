@@ -19,6 +19,7 @@ include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'h
 		<table class="table table-striped mb-0">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>Name</th>
 					<th>City</a></th>
 					<th>Sport</a></th>
@@ -29,6 +30,11 @@ include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'h
 			<tbody>
 				<?php foreach ( $teams as $team ) : ?>
 				<tr>
+					<td>
+					    <?php if ($team['id']) : ?>
+                            <?= $team['id']; ?>
+                        <?php endif; ?>
+                    </td>
 					<td>
 					    <?php if ($team['name']) : ?>
                             <div class="mb-2">
@@ -51,8 +57,8 @@ include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'h
                     </td>
                     <td>
 					    <?php if ($team['foundation_date']) : ?>
-                            <time datetime="<?= Time::get( $team['foundation_date'], $team['foundation_date'], 'c' ); ?>">
-							    <?= Time::get( $team['foundation_date'], $team['foundation_date'], 'Y-m-d H:i' ); ?>
+                            <time datetime="<?= Time::get( $team['foundation_date'], $team['foundation_date'], '' ); ?>">
+							    <?= Time::get( $team['foundation_date'], $team['foundation_date'], 'Y-m-d' ); ?>
 						    </time>
                         <?php endif; ?>
                     </td>
