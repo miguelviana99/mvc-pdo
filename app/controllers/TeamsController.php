@@ -4,7 +4,6 @@
  */
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'classes' . DS . 'Controller.php';
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'classes' . DS . 'Model.php';
-require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'User.php';
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Site.php';
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'File.php';
 require_once __DIR__ . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Str.php';
@@ -91,6 +90,8 @@ class TeamsController extends Controller
 	 */
 	public function edit($id = 0) : void
 	{
+        echo 'EDIT';
+        die();
 		$this->model('TeamsModel');
 
 		$team = $this->TeamsModel->getTeam(( int )$id);
@@ -130,6 +131,23 @@ class TeamsController extends Controller
 		$this->TeamsModel->deleteTeam( ( int )$id );
 	}
 
+	/**
+	 * View
+	 *
+	 * http://localhost/teams/viewItem/[$post_id]
+	 */
+	public function viewItem($id = 0) : void
+	{
+		$this->model( 'TeamsModel' );
+
+        $team = $this->TeamsModel->getTeam(( int )$id);
+
+        $data = array(
+			'team'   => $team
+		);
+
+		$this->view('teams/item', $data);
+	}
 }
 
 class_alias( 'TeamsController', 'Teams' );

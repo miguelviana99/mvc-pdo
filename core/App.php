@@ -82,31 +82,15 @@ class App
 		$route    = explode('/', URI);
 		$route[1] = strtolower($route[1]);
 
-		// echo __DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . $route[1] . 'Controller.php';
 		try {
 			if (file_exists(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . ucfirst($route[1]) . 'Controller.php')) {
 				require(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . ucfirst($route[1]) . 'Controller.php');
 				$controller = new $route[1]();
 			} else {
-				// echo ' ELSE ';
-				// echo DIRECTORY_SEPARATOR;
-				// if (file_exists(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . 'MainController.php')) {
-				// 	echo ' FILE EXISTS ';
-				// 	echo __DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . 'MainController.php';
-
-				// 	require(__DIR__ . DS . '..' . DS . 'app' . DS . 'controllers' . DS . 'MainController.php');
-				// 	echo 'dasddddas';
-				// 	$main = new MainController();
-				// 	$main->index();
-				// }
-				// else {
-				// 	echo "FILE NOT EXISTS";
-				// }
 				require(ROOT . PROJECT_FOLDER . '/app/controllers/MainController.php');
 				$main = new MainController();
 			}
 		} catch (\Throwable $e) {
-
 			echo ' -- ERROR -- ' . $e->getMessage();
 		}
 	}

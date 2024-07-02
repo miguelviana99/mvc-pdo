@@ -1,9 +1,6 @@
 <?php
 /**
  * Edit
- *
- * @package CRUD MVC OOP PDO
- * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/app/views/posts/edit.php
  */
 include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'helpers' . DS . 'Errors.php')
 

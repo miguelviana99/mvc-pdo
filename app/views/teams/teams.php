@@ -36,6 +36,7 @@ include_once(__DIR__ . DS . '..' . DS . '..' . DS . '..' . DS . 'core' . DS . 'h
                             </div>    
                             <a href="/teams/edit/<?= $team['id']; ?>" class="btn btn-light btn-sm">Edit</a>
                             <a href="/teams/delete/<?= $team['id']; ?>" class="btn btn-light btn-sm" onclick="return confirm( 'Are you want to DELETE <?= $team['name']; ?>?' );">Delete</a>
+                            <a href="/teams/viewItem/<?= $team['id']; ?>" class="btn btn-light btn-sm">View</a>
                         <?php endif; ?>
                     </td>
                     <td>

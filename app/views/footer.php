@@ -1,20 +1,10 @@
 <?php
 /**
  * Footer
- *
- * @package CRUD MVC OOP PDO
- * @link    https://github.com/utoyvo/crud-mvc-oop-pdo/blob/master/app/views/footer.php
  */
 
 ?>
 
-	<footer class="text-center">
-		<p>
-			<a href="https://github.com/utoyvo/crud-mvc-oop-pdo" target="_blank">https://github.com/utoyvo/crud-mvc-oop-pdo</a>
-			<br>With <span style="color:#f00">&#60;&#51;</span> by <a href="https://github.com/utoyvo" target="_blank">@utoyvo</a>
-			<br>v<?= Site::version(); ?>
-		</p>
-	</footer>
 </div><!-- .container -->
 
 <!-- scripts -->
